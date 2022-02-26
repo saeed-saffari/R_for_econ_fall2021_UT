@@ -1,0 +1,1357 @@
+---
+title: |
+  ![](tehran_university.png){width=1in}  
+  Introduction to R
+author:
+- "[Saeed Saffari](https://www.saeedsaffari.com)^[ [m.saeed.saffari@ut.ac.ir](mailto: m.saeed.saffari@ut.ac.ir) ]"
+- "Saeedeh Malekan^[ [saeedeh.malekan@ut.ac.ir](mailto: saeedeh.malekan@ut.ac.ir) ]"
+organization: University of Tehran
+date: Fall 2021 
+output:
+  html_document: 
+    toc: yes
+    toc_depth: 5
+    number_sections: true
+  pdf_document:
+    
+    toc: yes
+    toc_depth: 5
+    number_sections: true
+  html_notebook:
+    toc: yes
+    toc_depth: 5
+    number_sections: true
+---
+
+\newpage
+# Introduction
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+You can download and install packages with `install.packages("The name of package")`.
+
+\newpage
+# Basic of learning
+In this part we talk about basic elements of R programming.
+
+$\bullet$ Note that this is only a brief overview of **R programming**, and before that you should be familiar with the **Python programming language**.
+
+## How to Print
+
+```{r}
+print("This is R programming Course")
+```
+
+## Arithmetic Operators
+
+| Symbol | Task Performed |
+|:----:|:---:|
+| +  | Addition |
+| -  | Subtraction |
+| /  | division |
+| *  | multiplication |
+| **  | to the power of |
+| ^  | to the power of |
+| %%  | modulus |
+| %/%  | floor division |
+
+
+```{r}
+18 + 4
+18 - 4
+18 * 4
+10 / 2 
+2 ** 3
+2 ^ 3
+9 ** 0.5
+log10(2)
+5 + ( 4 - 3 * 2)**3 + 1
+14 %% 4
+8 %/% 3
+```
+**we can save values in variables:**
+```{r}
+x <- 18
+y <- 4
+z <- x + y
+print(z)
+z
+class(z)
+a = 'R Programming'
+class(a)
+```
+
+## Relational Operators
+
+| Symbol | Task Performed |
+|:----:  |:---:|
+|<-	     |Assignment|
+|=	     |Assignment|
+|assign()|Assignment|
+|==      |True, if it is equal|
+|!=      |True, if not equal to|
+|<	     |less than|
+|>	     |greater than|
+|<=      |less than or equal to|
+|>=      |greater than or equal to|
+
+
+```{r}
+z <- 10
+y = 18
+assign('x', 30)
+z
+y
+x
+
+x < y
+x >= y
+x != y
+x == y
+```
+
+**you can use below command to get special values:**
+
+```{r}
+x <- pi
+x
+
+x <- letters
+x
+
+x <- LETTERS
+x
+
+x <- month.name
+x
+
+x <- month.abb
+x
+```
+
+**you can write comment with # :**
+```{r}
+# This line is comment.
+```
+
+**you can creat sequence numbers with below command:**
+
+This work like *arange* in numpy pakage in Python
+```{r}
+
+x <- 1:10
+x
+
+x <- 1:10 * 2
+x
+
+x <- seq(5)
+x
+
+x <- seq(from = 1, to = 9)
+x
+
+x <- seq(from = 1, to = 9, by = 3)
+x
+
+x <- seq(1, 10, 2)
+x
+```
+This work like *linsapce* in numpy pakage in Python
+```{r}
+x <- seq(1, 10, length = 4)
+x
+```
+
+Replicate function:
+```{r}
+x <- 1:3
+x
+y <- rep(x, times = 5)
+y
+y <- rep(x, each = 5)
+y
+```
+
+
+## Loops
+### if , elif
+
+```{r}
+age <- 18#as.integer(readline(prompt('Enter your age: ')))
+
+if (age >= 18){
+  print("You are old enough to vote!")
+} else {
+  print('You can NOT vote yet!')
+  print(paste("you can will vote after ", 18 - age, " years."))
+}
+```
+
+```{r}
+age <- 10 # as.integer(readline(prompt('Enter your age: ')))
+
+if (age <= 4){
+  price = 0
+} else if (age <= 16){
+  price = 5
+} else {
+  price = 10
+}
+
+print(paste("your cost is $",price,"."))
+```
+
+### for loops
+
+```{r}
+for (i in 1:5){
+  print(i)
+}
+```
+### while loops
+
+```{r}
+i <- 1
+while (i < 10){
+  print(i)
+  i <- i + 1
+}
+```
+**Use break and next in loops**
+
+```{r}
+for (i in 1:10){
+  if (i == 5){
+    break
+  }
+  print(i)
+}
+```
+```{r}
+for (i in 1:10){
+  if (i == 5){
+    next
+  }
+  print(i)
+}
+```
+
+## function
+
+```{r}
+ave = function(a, b, c){
+  summ = a + b + c
+  ave = summ / 3
+  return( ave)
+}
+
+ave(34, 13, -21)
+```
+
+```{r}
+ave = function(a, b , c){
+  #a <- as.integer(readline(prompt('Enter your first number: ')))
+  #b <- as.integer(readline(prompt('Enter your second number: ')))
+  #c <- as.integer(readline(prompt('Enter your third number: ')))
+  summ = a + b + c
+  ave = summ / 3
+  return( ave)
+}
+
+ave(12, 13, 14)
+```
+
+\newpage
+# Vetors
+The most common way to creat vectors is to use function `c()`.
+
+```{r}
+x <- c(10.25, 3.5, 8.75, 23.15)
+x
+
+x <- c('a', "b", 'C')
+x
+
+# all elemets have same type
+x <- c(10.25, 3.5, 8.75, 23.15, 'a', "b", 'C')
+x
+
+x <- c(1,2,4,5,6,7)
+x
+
+y <- 1:7
+y
+```
+**Concat vectors**
+```{r}
+x <- c(10,20,30,40)
+
+y <- c(3.5, 4.75)
+
+z <- c(x, y)
+z
+```
+You can find _lenght_ of vectors with _lenght()_ function:
+```{r}
+x <- c(1.5,3.25,8.75,13.15)
+x
+length(x)
+```
+## Vector Indexing
+You can indexing vectors exactly like python, but you should know that we start from **_one_** in _R programming_.
+```{r}
+x <- c(10,45,30,50,35,40,80)
+x
+
+x[1]
+
+x[-2]
+
+x[3:7]
+
+x[c(1,3,4)]
+
+length(x)
+x[10]
+
+x[2] <- -8
+x
+
+x[10] <- 9
+x
+
+x[-3] <- 6
+x
+
+x <- c(10,45,30,50,35,40,80)
+y <- c(TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE)
+x[y]
+```
+Use for loops for access to elemets of vectors
+
+```{r}
+for (i in x){
+ print(i) 
+}
+```
+Use index:
+```{r}
+for (i in 1:length(x)){
+ print(x[i]) 
+}
+```
+```{r}
+for (i in 1:10){
+ print(x[i]) 
+}
+```
+
+## Matching Operator
+
+```{r}
+x <- c(10,45,30,50,35,40,80)
+
+
+35 %in% x
+
+37 %in% x 
+
+y <- c(30, 37, 45)
+
+y %in% x
+```
+## Vector Arthmetic's
+
+```{r}
+x <- c(10,45,30,50)
+x
+
+x + 2
+
+x <- x * 2
+x
+
+sqrt(x)
+```
+
+```{r}
+x <- c(10,45,30,50)
+y <- c(5,1,2,4)
+
+x + y
+
+z <- c(10,20,30)
+x + z
+```
+
+
+## Vector Methods
+
+```{r}
+x <- c(10,45,30,50)
+length(x)
+
+sum(x)
+
+prod(x)
+
+rev(x)
+
+sort(x)
+
+sort(x, decreasing =  TRUE)
+```
+```{r}
+x <- c(10,45,30,50)
+y <- c(5,1,4,3)
+
+x %*% y
+
+crossprod(x,y)
+
+x %o% y
+tcrossprod(x,y)
+```
+## Logical Vector
+
+```{r}
+x <- c(10,45,30,50,35)
+x
+
+y <- x > 30 & x < 50
+y
+
+x[y]
+```
+```{r}
+x <- c(10,45,30,50,35)
+y <- c(20,15,25,65,5)
+
+x < y
+
+x[x <y]
+```
+
+```{r}
+x <- c(10,45,30,50,35)
+which(x>30)
+ 
+x[which(x>30)]
+```
+
+## Factors
+- Used to represent categorical data
+- Treated as integer vector, having a label
+- Factors are self describing
+
+```{r}
+x <- c('Male', "Female", "Male", 'Male', "Female")
+x
+
+x <- factor(c('Male', "Female", "Male", 'Male', "Female"))
+x
+
+table(x)
+```
+
+## Mathematical Function in R
+
+```{r}
+x <- c(4.258, -3.853, 5.457, 7.504)
+abs(x)
+
+ceiling(x)  #next integer
+
+floor(x)   #samller integer
+
+round(x)
+
+round(x, digits = 2)
+```
+
+```{r}
+x <- c(16,36,30,81,25)
+sqrt(x)
+
+log(x)
+
+log(x, base = 2)
+
+log(x, base = 10)
+log10(x)
+
+x <- c(4,3,6)
+factorial(x)
+```
+
+## Random Number in R
+
+```{r} 
+x <- rnorm(10)  # mean = 0 and std = 1
+x
+
+x <- rnorm(10, mean = 0, sd = 1)
+
+mean(x)
+sd(x)
+
+```
+
+\newpage
+# Matrix
+
+## Creat Matrix
+
+Matrix are 2-dimentsional vectors and Dimensianal attribute is of lenght 2 (rows and columns). We should to know that Matrix contain elemts of same type.
+
+```{r}
+m <- matrix(nrow = 2, ncol = 3)
+m
+
+dim(m)    # dimension
+dim(m)[1]
+```
+
+```{r}
+m <- matrix(c(1,2,3,4,5,6))
+m
+
+m <- matrix(c(1,2,3,4,5,6), nrow = 2,ncol = 3)
+m
+
+m <- matrix(c(1,2,3,4,5,6), nrow = 2,ncol = 3, byrow = TRUE)
+m
+
+m <- matrix(seq(from = 1, to = 40, by = 2), nrow = 4, ncol = 5, byrow = TRUE)
+m
+
+dim(m)
+nrow(m)
+ncol(m)
+length(m)
+```
+## Matrix diag
+
+like `numpy.full` in python
+
+```{r}
+m <- matrix(4,3,3)
+m
+```
+
+like `numpy.diag` in python
+
+```{r}
+m <- diag(1,3,3)
+m
+
+m <- diag(4)
+m
+
+m <- diag(1:5)
+m
+```
+
+for find the elements of diagonal of matrix:
+
+```{r}
+m <- matrix(seq(from = 1, to = 40, by = 2), nrow = 4, ncol = 5, byrow = TRUE)
+m
+
+diag(m)
+```
+
+## Matrix: Naming Rows & Columns
+
+```{r}
+m <- matrix(c(2,3,4,0,1,2,-1,-3,5), nrow = 3, ncol = 3, byrow = TRUE)
+m
+
+rownames(m) <- c(1,2,3)
+colnames(m) <- c("A", "B", 'C')
+m
+```
+
+## Matrix Indexing
+
+Indexing in R programming is similar to Python.
+
+```{r}
+m <- matrix(c(2,3,4,0,1,2,-1,-2,5,8,6,-3), nrow = 4, ncol = 3, byrow = TRUE)
+m
+```
+```{r}
+m[1,2]
+m[1,]  # for get single row
+m[,2]  # for get single column
+m[,1:2]
+m[1:3,1:2]
+m[,c(1,3)]
+m[, -2]  # every columns except 2
+```
+
+You can change values in matrix as like as Python.
+
+```{r}
+m <- matrix(c(2,3,4,0,1,2,-1,-2,5,8,6,-3), nrow = 4, ncol = 3, byrow = TRUE)
+m
+
+m[2,3] = 9
+m
+```
+## Matrix: `rbine()` and `cbind()` functions
+
+You can combine matrices with `rbine()` and `cbind()` functions. 
+
+At first, we want to combine the matrices from the row.
+```{r}
+A <- matrix(c(2,3,4,0,1,2,-1,-2,5), nrow = 3, ncol = 3, byrow = TRUE)
+A
+
+B <- rbind(A, c(10,11,12))
+B
+
+B <- matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE)
+B
+
+C <- rbind(A,B)
+C
+```
+After that, we want to combine the matrices from the columns.
+
+```{r}
+A <- matrix(c(2,3,4,0,1,2,-1,-2,5), nrow = 3, ncol = 3, byrow = TRUE)
+A
+
+B <- cbind(A, c(10,11,12))
+B
+
+B <- matrix(1:6, nrow = 3, ncol = 2)
+B
+
+C <- cbind(A,B)
+C
+```
+
+Relational Operators in Matrics:
+
+```{r}
+A <- matrix(c(1,2,3,4,5,6,8,9,1) , nrow=3, ncol=3, byrow=TRUE)
+B <- matrix(c(3,1,2,4,2,1,5,1,2), nrow=3, ncol=3, byrow=TRUE)
+
+A
+B
+```
+```{r}
+A + B
+A - B
+A * B
+A / B
+```
+ 
+Like `numpy.transpose()` or `.T` in python
+
+```{r}
+A <- matrix(c(1,2,3,4,5,6,8,9,1,4,2,3) , nrow=3, ncol=4, byrow=TRUE)
+A
+
+t(A)
+```
+## Matrix Specific Functions
+
+```{r}
+A <- matrix(1:9,3,3)
+A
+```
+```{r}
+rowSums(A)
+colSums(A)
+rowMeans(A)
+colMeans(A)
+```
+
+\newpage
+# Lists
+
+## Creat list
+`Lists` are also collecting of data and another kind of data storage. Lists can contain elemnts of any type of R object and these elements of list don't need be same type. You can creat list by using `list()` function.
+
+```{r}
+x <- list(10, 'Saeed', TRUE)
+x
+```
+Creat list with vectors
+```{r}
+classno <- c(101,102,103)
+name <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- list(classno, name, scores)
+students
+```
+```{r}
+students[1]
+students[[1]]
+students[[1]][2]
+students[[1]][2] = 109
+students
+```
+
+## List subset Operator
+
+```{r}
+classno <- c(101,102,103)
+name <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- list("id" = classno, "name" = name, "marks" = scores)
+students
+
+students$id
+
+students$name
+
+students$marks
+
+students[c(1,3)]
+
+students[c("id", "marks")]
+
+students$name[1]
+
+```
+
+## Lists Concatenation
+
+```{r}
+classno <- c(101,102,103)
+name <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- list("id" = classno, "name" = name, "marks" = scores)
+students
+
+age <- list(c(19,20,18))
+students <- c(students,age)
+students
+```
+
+\newpage
+# Dataframe
+
+Dataframes are objects in R and used to store tabular data. Unlike a matrix in data frame each column can contain different modes of data. The first column can be numeric while the second column can be character and third column can be logical. It is a list of vectors of equal length. Dataframe can be created using `data.frame()` function or imported from various file types. 
+
+  - `read.table()``
+  - `read.csv()``
+
+## Creating Dataframes
+
+```{r}
+id <- c(101,102,103)
+names <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- data.frame(id, names, scores)
+students
+```
+
+```{r}
+slist <- list(id,names,scores)
+slist
+```
+
+## Dataframes Indexing
+
+```{r}
+id <- c(101,102,103)
+names <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- data.frame(id, names, scores)
+students
+```
+```{r}
+students[1,]
+students[2:3,]
+students[,1]
+students[,2:3]
+students[c(1,3), c(2,3)]
+students[2,3]
+students[[3]]
+students[[3]][2]
+
+students[[3]][2] = 87.23
+students
+
+students$names
+
+students$names[2]
+```
+
+
+## Dataframes `subset()` function
+
+```{r}
+id <- c(101,102,103)
+names <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- data.frame(id, names, scores)
+students
+```
+```{r}
+report <- subset(students, scores < 80)
+report
+
+report <- subset(students, scores < 80 & id < 103)
+report
+
+report <- subset(students, scores < 80, select = c(names))
+report
+
+report <- subset(students, scores < 80, select = c(names, scores))
+report
+
+report <- subset(students, scores < 80, select = -names)
+report
+```
+
+## Dataframes `rbine()` and `cbind()`
+
+```{r}
+id <- c(101,102,103)
+names <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- data.frame(id, names, scores)
+students
+```
+add rows
+
+```{r}
+students <- rbind(students, data.frame(id = 104, names = 'Mohammad', scores = 68.57))
+students
+```
+add columns
+
+```{r}
+students <- cbind(students, age = c(18,24,19,26))
+students
+```
+
+## Dataframes `edit()` functuion
+
+```{r}
+id <- c(101,102,103)
+names <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- data.frame(id, names, scores)
+students
+
+#studentstable <- edit(students)
+#studentstable
+```
+
+## Saving data in csv
+
+```{r}
+id <- c(101,102,103)
+names <- c("Mahshid", "Saeed", "Sara")
+scores <- c(98.45, 45.65, 78.79)
+students <- data.frame(id, names, scores)
+students
+
+write.csv(students, file = 'Scoring.csv')
+```
+
+
+
+## Missing Data
+
+In this part we find out how handle a missing data like `NA`.
+
+This function is like `.isnull()` in python programming.
+
+```{r}
+x <- c(10,4,NA,7,15,NaN)
+x
+
+is.na(x)
+is.nan(x)
+```
+
+Remove missing values
+
+```{r}
+x <- c(10,4,NA,7,15,NaN)
+x
+
+is.na(x)
+y <- is.na(x)
+y
+
+x[!y]
+x[!is.na(x)]
+x_2 = x[!is.na(x)]
+x_2
+```
+
+```{r}
+id <- c(101,102,103,104,105)
+temperature <- c(25.8,34.2,NA,27.4,20.5)
+wind <- c(78,59,63,40,68)
+humidity <- c(25,45,85,NA,61)
+
+weather <- data.frame(id,temperature, wind, humidity)
+weather
+
+weatherNA <- complete.cases(weather)
+weatherNA
+
+weather[weatherNA,]
+```
+
+## Dataframes Importing Data from CSV Files
+
+Data is imported in to dataframes using: `read.csv()`
+
+`read.csv()` arguments:
+
+  - **file:** name of the file (mandatory argument)
+  - **header:** logical value (default is false)
+  - **sep:** separator (default is comma (`,`))
+  
+
+```{r}
+df <- read.csv("sample.csv")
+df
+```
+
+\newpage
+# Dplyr Package
+
+You can download and install packages with install.packages("The name of package"). In this case, run `install.packages('dplyr')` to download and install `dplyr` package.
+
+Also, you can import packages in R with `library()` function.
+
+```{r}
+# install.packages("dplyr")
+
+library(dplyr)
+```
+
+
+```{r}
+library(dplyr)
+df <- read.csv("murders.csv")
+df
+```
+you can see head or tail of data with below function. It's work like `.head()` and `.tail()` in Pandas package in python.
+
+```{r}
+head(df,5)
+
+tail(df,5)
+```
+
+
+like `.shape` in pandas package in python
+
+```{r}
+dim(df)
+```
+like `.describe()` in pandas package in python for understand structure of data:
+```{r}
+str(df)
+```
+
+## dplyr `select()` function
+
+**Select special columns**
+
+Select with number of columns:
+```{r}
+df[c(2,4,5)]
+```
+
+Select with name of columns:
+```{r}
+df[c('state', "population", "murders")]
+
+dfprime <- select(df, 'state', "region", "murders", "population")
+dfprime
+```
+for get names of columns, you can use below function. This work like `.columns` in pandas package in Python.
+
+```{r}
+names(df)
+```
+
+Also you can select range of columns:
+
+```{r}
+dfprime <- select(df, state:population)
+dfprime
+```
+
+You can drop columns with use minus sign (`-`) in `select` function.
+
+```{r}
+dfprime <- select(df, -abb)
+dfprime
+
+dfprime <- select(df, - c(abb, murders, gunmurders))
+dfprime
+
+dfprime <- select(df, -(abb:murders))
+dfprime
+```
+
+## dplyr `filter()` function
+
+```{r}
+library(dplyr)
+
+df <- read.csv("murders.csv")
+names(df)
+
+dfprime <- filter(df, murders > 100)
+dfprime
+
+dfprime <- filter(df, murders > 100 & population > 10000000 )
+dfprime
+```
+
+  ## dplyr `arrange()` function
+```{r}
+library(dplyr)
+
+df <- read.csv("murders.csv")
+names(df)
+
+dfprime <- arrange(df, murders)
+dfprime
+
+# for descending order
+
+dfprime <- arrange(df, desc(murders))
+dfprime
+
+```
+
+## dplyr `rename()` function
+
+```{r}
+library(dplyr)
+
+df <- read.csv('murders.csv')
+names(df)
+
+df2 <- rename(df, abbreviation = abb)
+names(df2)
+
+df2 <- rename(df, abbreviation = abb, homicide = murders)
+names(df2)
+
+```
+
+## dplyr `mutate()` function
+
+```{r}
+library(dplyr)
+
+df <- read.csv('murders.csv')
+names(df)
+
+dfprime <- mutate(df, ratio = murders / population)
+dfprime
+names(dfprime)
+
+select(dfprime, state, population, murders, ratio)
+
+dfprime <- transmute(df, ratio = murders / population)
+dfprime
+
+dfprime <- transmute(df, state = state, ratio = murders / population)
+dfprime
+```
+
+  
+## dplyr `group_by()` function
+
+```{r}
+library(dplyr)
+
+df <- read.csv('murders.csv')
+names(df)
+
+dfprime <- group_by(df, region)
+dfprime
+
+summarise(dfprime, sum(murders))
+
+summarise(dfprime, sum(murders), mean(gunownership), median(population))
+```
+
+## dplyr Pipe Operator %>%
+
+```{r}
+library(dplyr)
+
+df <- read.csv('murders.csv')
+names(df)
+
+dfprime <- arrange(df, murders)
+dfprime
+
+dfprime2 <- select(dfprime, state, murders)
+dfprime2
+
+head(dfprime2, 5)
+
+arrange(df, murders) %>% select(state, murders) %>% head(5)
+```
+\newpage
+# Data Visualization with `dplyr`
+
+## Bar Graphs
+
+```{r}
+library(dplyr)
+
+df <- read.csv('murders.csv')
+names(df)
+
+barplot(df$population,
+        xlab = 'State',
+        ylab = "Population",
+        main = "State vs Population",
+        names.arg = df$state,
+        col = 'blue'
+        )
+
+```
+
+
+```{r}
+dfprime <- arrange(df, desc(murders)) %>% head(5)
+#dfprime
+
+barplot(dfprime$murders,
+        xlab = 'State',
+        ylab = "Murders",
+        main = "State vs Murders",
+        names.arg = dfprime$state,
+        col = 'red'
+        )
+```
+
+**Horizontsl Bar Graphs**
+
+```{r}
+dfprime <- arrange(df, desc(murders)) %>% head(5)
+#dfprime
+
+barplot(dfprime$murders,
+        xlab = 'Murders',
+        ylab = "State",
+        main = "State vs Murders",
+        names.arg = dfprime$state,
+        col = 'green',
+        horiz = TRUE
+        )
+```
+
+**stacked Bar Plots**
+
+```{r}
+library(dplyr)
+
+df <- read.csv('murders.csv')
+names(df)
+
+dfprime <- mutate(df, popu = population / 10000)
+names(dfprime)
+
+dfmatrix <- data.matrix(dfprime[c(2,7,10)])
+dfmatrix
+
+dfmatrix <- t(dfmatrix)
+dfmatrix
+
+barplot(dfmatrix,
+        xlab = 'State',
+        ylab = 'Murders and Population',
+        main = "Population and Murders",
+        names.arg = df$state,
+        col = c("blue", 'red')
+        )
+legend("topright", c("Population", "Murders"), fill = c('blue', 'red'))
+```
+
+## Histogram
+
+```{r}
+library(dplyr)
+
+df <- read.csv('GEStock.csv')
+#df
+names(df)
+
+hist(df$Price,
+     xlab = 'Stock Price',
+     main = "Stock Data",
+     col = 'blue',
+     border = 'black',
+     breaks = 20
+     )
+
+
+```
+
+## Scatter Plots
+
+The default of `plot` functions is Scatter plot.
+
+```{r}
+library(dplyr)
+
+df <- read.csv('murders.csv')
+names(df)
+
+plot(df$population, df$murders,
+     xlab = "Population",
+     ylab = "Murders",
+     main = "Population vs Murders",
+     col = 'red',
+     pch = 19
+     )
+
+```
+
+
+**pch values**
+
+Values of pch are stored internally as integers.
+
+![Some values of pch](/Users/saeed/Dropbox/Python Courses/Fall 2021/R programming/pch values.png)
+
+
+## Line Graphs
+
+```{r}
+library(dplyr)
+
+df <- read.csv('murders.csv')
+names(df)
+
+plot(df$murders,
+     type = 'b',
+     xlab = 'State',
+     ylab = "Murders",
+     main = "States vs Murders",
+     col = 'blue'
+     )
+```
+
+**`type` in `plot` function**
+
+ - **"p"** for points,
+ - **"l"** for lines,
+ - **"b"** for both points and lines,
+ - **"c"** for empty points joined by lines, 
+ - **"o"** for overplotted points and lines,
+ - **"s"** and **"S"** for stair steps,
+ - **"h"** for histogram-like vertical lines,
+ - **"n"** does not produce any points or lines.
+
+
+## Box plots
+```{r}
+library(dplyr)
+df <- read.csv('murders.csv')
+names(df)
+
+boxplot(df$murders ~ df$region,
+        xlab = "Region",
+        ylab = "Murders",
+        main = "Regions VS Murders",
+        col = 'red',
+        border = 'blue'
+        )
+```
+
+## Multiple Plots in Layout
+
+```{r}
+par(mfrow = c(1,2))
+library(dplyr)
+df <- read.csv('murders.csv')
+names(df)
+
+dfprime <- mutate(df, popu = population / 10000)
+names(dfprime)
+
+barplot(dfprime$popu,
+        xlab = 'States',
+        main = "States vs Population",
+        col = 'blue',
+        names.arg = dfprime$state
+        )
+
+barplot(dfprime$murders,
+        xlab = 'States',
+        main = "States vs Murders",
+        col = 'red',
+        names.arg = dfprime$state
+        )
+
+
+```
+
+```{r}
+par(mfrow = c(2,2))
+library(dplyr)
+df <- read.csv('murders.csv')
+names(df)
+
+dfprime <- mutate(df, popu = population / 10000)
+names(dfprime)
+
+barplot(dfprime$popu,
+        xlab = 'States',
+        main = "States vs Population",
+        col = 'blue',
+        names.arg = dfprime$state
+        )
+
+barplot(dfprime$murders,
+        xlab = 'States',
+        main = "States vs Murders",
+        col = 'red',
+        names.arg = dfprime$state
+        )
+
+plot(dfprime$popu, df$murders,
+     xlab = "Population",
+     ylab = "Murders",
+     main = 'Population VS Murders',
+     col = 'red',
+     pch = 19
+     )
+
+plot(df$murders,
+     type = 'l',
+     xlab = 'State',
+     ylab = "Murders",
+     main = "States vs Murders",
+     col = 'blue'
+     )
+```
+
+
